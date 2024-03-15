@@ -1,6 +1,7 @@
 # Loans-DesafioBackEnd
 
 > Projeto focado em ser uma API RestFul de empréstimo, na qual tem suas regras de négocio para negociação do empréstimo.
+- Link ([Desafio])(https://github.com/backend-br/desafios/blob/master/loans/PROBLEM.md) você pode clicar no link.
 
 
 ## 💻 Pré-requisitos
@@ -10,7 +11,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você instalou a versão mais recente de `Java JDK 17`
 - Você tem uma máquina `<Windows / Linux / Mac>`.
 - O projeto está utilizando `PostgresSQL` como banco de dados. Sendo necessário o `FlyWay` para migração de dados.
-- Para [instalar PostgresSQL])(https://www.postgresql.org/download/) você pode clicar no link.
+- Para ([instalar PostgresSQL])(https://www.postgresql.org/download/) você pode clicar no link.
 
 ## 🚀 Instalando Loans-DesafioBackEnd
 
