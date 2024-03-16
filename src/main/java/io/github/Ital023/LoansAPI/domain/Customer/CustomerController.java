@@ -1,6 +1,7 @@
 package io.github.Ital023.LoansAPI.domain.Customer;
 
 import io.github.Ital023.LoansAPI.loans.LoansEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,25 +15,12 @@ import java.util.List;
 @RequestMapping("/customer-loans")
 public class CustomerController {
 
+    @Autowired
+    private CustomerLoanUseCase customerLoanUseCase;
+
     @PostMapping
     public ResponseEntity verifierCustomerLoans(@RequestBody CustomerEntity customer){
-        List<LoansEntity> loans = new ArrayList<>();
-        LoansEntity PERSONAL = new LoansEntity("PERSONAL",4);
-        LoansEntity GUARANTEED = new LoansEntity("GUARANTEED",3);
-        LoansEntity CONSIGNMENT = new LoansEntity("CONSIGNMENT",2);
-
-        if(customer.getIncome() <= 3000 ||( (customer.getIncome() >= 3000 && customer.getIncome() <= 5000) && customer.getAge() < 30 && customer.getLocation().equals("SP")) )
-        {
-                loans.add(PERSONAL);
-                loans.add(CONSIGNMENT);
-        }
-
-        if(customer.getIncome() >= 5000){
-            loans.add(GUARANTEED);
-        }
-
-
-        CustomerLoansDTO customerLoansDTO = new CustomerLoansDTO(customer.getName(), loans);
+        CustomerLoansDTO customerLoansDTO = customerLoanUseCase.CustomerCases(customer);
         return ResponseEntity.ok().body(customerLoansDTO);
     }
 }
