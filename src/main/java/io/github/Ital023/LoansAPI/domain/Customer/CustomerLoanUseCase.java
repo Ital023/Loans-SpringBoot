@@ -15,13 +15,12 @@ public class CustomerLoanUseCase {
         LoansEntity GUARANTEED = new LoansEntity("GUARANTEED",3);
         LoansEntity CONSIGNMENT = new LoansEntity("CONSIGNMENT",2);
 
-        if(customer.getIncome() <= 3000 ||( (customer.getIncome() >= 3000 && customer.getIncome() <= 5000) && customer.getAge() < 30 && customer.getLocation().equals("SP")) )
-        {
+        if(isEligibleForPersonalAndConsignmentLoans(customer)) {
             loans.add(PERSONAL);
             loans.add(CONSIGNMENT);
         }
 
-        if(customer.getIncome() >= 5000){
+        if(isEligibleForGuaranteedLoans(customer)){
             loans.add(GUARANTEED);
         }
 
@@ -31,6 +30,12 @@ public class CustomerLoanUseCase {
         return customerLoansDTO;
     }
 
+    private boolean isEligibleForPersonalAndConsignmentLoans(CustomerEntity customer) {
+        return (customer.getIncome() <= 3000 ||( (customer.getIncome() >= 3000 && customer.getIncome() <= 5000) && customer.getAge() < 30 && customer.getLocation().equals("SP")));
+    }
 
+    private boolean isEligibleForGuaranteedLoans(CustomerEntity customer){
+        return customer.getIncome() >= 5000;
+    }
 
 }
