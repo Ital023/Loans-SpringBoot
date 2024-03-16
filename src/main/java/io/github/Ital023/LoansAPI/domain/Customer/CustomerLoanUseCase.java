@@ -15,17 +15,17 @@ public class CustomerLoanUseCase {
 
     public CustomerLoansDTO CustomerCases(CustomerEntity customer){
         List<LoansEntity> loans = new ArrayList<>();
-        LoansEntity PERSONAL = new LoansEntity("PERSONAL",4);
+        /*LoansEntity PERSONAL = new LoansEntity("PERSONAL",4);
         LoansEntity GUARANTEED = new LoansEntity("GUARANTEED",3);
-        LoansEntity CONSIGNMENT = new LoansEntity("CONSIGNMENT",2);
+        LoansEntity CONSIGNMENT = new LoansEntity("CONSIGNMENT",2);*/
 
         if(isEligibleForPersonalAndConsignmentLoans(customer)) {
-            loans.add(PERSONAL);
-            loans.add(CONSIGNMENT);
+            //loans.add(PERSONAL);
+            //loans.add(CONSIGNMENT);
         }
 
         if(isEligibleForGuaranteedLoans(customer)){
-            loans.add(GUARANTEED);
+            //loans.add(GUARANTEED);
         }
 
 
