@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoansEntity {
     @NotBlank
+    @Id
     private String type;
     @NotNull
     private int interest_rate;

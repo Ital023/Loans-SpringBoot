@@ -1,0 +1,2 @@
+ALTER TABLE loans
+ADD PRIMARY KEY (type);
