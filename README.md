@@ -26,13 +26,11 @@ git clone https://github.com/Ital023/CrudApplication.git
 Para usar Loans-DesafioBackEnd, siga estas etapas:
 
 ```
-GET / - Retrieve a list of all data.
+GET / - (localhost:8080/customer-loans/{id}) return all of loans availables to specfic user.
 
-POST / - Register a new data.
 
-PUT / - Alter data.
+POST / - (localhost:8080/customer-loans) return save the user on db and show the availables loans to get.
 
-DELETE / - Delete data.
 ```
 
 ## 🤝 Colaboradores
