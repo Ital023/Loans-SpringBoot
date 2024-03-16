@@ -1,6 +1,7 @@
 package io.github.Ital023.LoansAPI.domain.Customer;
 
 import io.github.Ital023.LoansAPI.loans.LoansEntity;
+import io.github.Ital023.LoansAPI.loans.LoansRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,24 +13,24 @@ public class CustomerLoanUseCase {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private LoansRepository loansRepository;
 
     public CustomerLoansDTO CustomerCases(CustomerEntity customer){
-        List<LoansEntity> loans = new ArrayList<>();
-        /*LoansEntity PERSONAL = new LoansEntity("PERSONAL",4);
-        LoansEntity GUARANTEED = new LoansEntity("GUARANTEED",3);
-        LoansEntity CONSIGNMENT = new LoansEntity("CONSIGNMENT",2);*/
+        List<LoansEntity> loansCustomer = new ArrayList<>();
+        List<LoansEntity> loans = loansRepository.findAll();
 
         if(isEligibleForPersonalAndConsignmentLoans(customer)) {
-            //loans.add(PERSONAL);
-            //loans.add(CONSIGNMENT);
+            loansCustomer.add(loans.get(0));
+            loansCustomer.add(loans.get(2));
         }
 
         if(isEligibleForGuaranteedLoans(customer)){
-            //loans.add(GUARANTEED);
+            loansCustomer.add(loans.get(1));
         }
 
 
-        CustomerLoansDTO customerLoansDTO = new CustomerLoansDTO(customer.getName(), loans);
+        CustomerLoansDTO customerLoansDTO = new CustomerLoansDTO(customer.getName(), loansCustomer);
 
         return customerLoansDTO;
     }
