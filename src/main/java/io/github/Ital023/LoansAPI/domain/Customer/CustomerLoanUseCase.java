@@ -1,6 +1,7 @@
 package io.github.Ital023.LoansAPI.domain.Customer;
 
 import io.github.Ital023.LoansAPI.loans.LoansEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,6 +9,9 @@ import java.util.List;
 
 @Service
 public class CustomerLoanUseCase {
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public CustomerLoansDTO CustomerCases(CustomerEntity customer){
         List<LoansEntity> loans = new ArrayList<>();
@@ -28,6 +32,10 @@ public class CustomerLoanUseCase {
         CustomerLoansDTO customerLoansDTO = new CustomerLoansDTO(customer.getName(), loans);
 
         return customerLoansDTO;
+    }
+
+    public void saveDatabase(CustomerEntity customer){
+        customerRepository.save(customer);
     }
 
     private boolean isEligibleForPersonalAndConsignmentLoans(CustomerEntity customer) {

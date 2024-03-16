@@ -21,6 +21,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity verifierCustomerLoans(@RequestBody CustomerEntity customer){
         CustomerLoansDTO customerLoansDTO = customerLoanUseCase.CustomerCases(customer);
+        customerLoanUseCase.saveDatabase(customer);
         return ResponseEntity.ok().body(customerLoansDTO);
     }
 }
