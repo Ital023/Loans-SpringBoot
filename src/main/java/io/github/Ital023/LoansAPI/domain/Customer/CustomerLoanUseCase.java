@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerLoanUseCase {
@@ -33,6 +35,17 @@ public class CustomerLoanUseCase {
         CustomerLoansDTO customerLoansDTO = new CustomerLoansDTO(customer.getName(), loansCustomer);
 
         return customerLoansDTO;
+    }
+
+    public CustomerLoansDTO getCustomer(UUID id){
+        Optional<CustomerEntity> customerOptional = customerRepository.findById(id);
+
+        if(customerOptional.isPresent()){
+            CustomerEntity customer = customerOptional.get();
+            return CustomerCases(customer);
+        }
+
+        return null;
     }
 
     public void saveDatabase(CustomerEntity customer){
