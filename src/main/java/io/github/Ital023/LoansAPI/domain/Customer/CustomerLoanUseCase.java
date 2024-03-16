@@ -20,15 +20,14 @@ public class CustomerLoanUseCase {
 
     public CustomerLoansDTO CustomerCases(CustomerEntity customer){
         List<LoansEntity> loansCustomer = new ArrayList<>();
-        List<LoansEntity> loans = loansRepository.findAll();
 
         if(isEligibleForPersonalAndConsignmentLoans(customer)) {
-            loansCustomer.add(loans.get(0));
-            loansCustomer.add(loans.get(2));
+            loansCustomer.add(loansRepository.findByType("PERSONAL"));
+            loansCustomer.add(loansRepository.findByType("CONSIGNMENT"));
         }
 
         if(isEligibleForGuaranteedLoans(customer)){
-            loansCustomer.add(loans.get(1));
+            loansCustomer.add(loansRepository.findByType("GUARANTEED"));
         }
 
 
