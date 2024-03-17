@@ -1,6 +1,7 @@
 package io.github.Ital023.LoansAPI.domain.Customer;
 
 import io.github.Ital023.LoansAPI.loans.LoansEntity;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity verifierCustomerLoans(@RequestBody CustomerEntity customer){
+    public ResponseEntity verifierCustomerLoans(@RequestBody @Valid CustomerEntity customer){
         CustomerLoansDTO customerLoansDTO = customerLoanUseCase.CustomerCases(customer);
         customerLoanUseCase.saveDatabase(customer);
         return ResponseEntity.ok().body(customerLoansDTO);

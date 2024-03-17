@@ -2,6 +2,7 @@ package io.github.Ital023.LoansAPI.domain.Customer;
 
 import io.github.Ital023.LoansAPI.loans.LoansEntity;
 import io.github.Ital023.LoansAPI.loans.LoansRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,8 +45,10 @@ public class CustomerLoanUseCase {
             return CustomerCases(customer);
         }
 
-        return null;
+        throw new EntityNotFoundException();
     }
+
+
 
     public void saveDatabase(CustomerEntity customer){
         customerRepository.save(customer);
