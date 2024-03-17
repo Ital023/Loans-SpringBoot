@@ -29,4 +29,10 @@ public class CustomerController {
         customerLoanUseCase.saveDatabase(customer);
         return ResponseEntity.ok().body(customerLoansDTO);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteCustomer(@PathVariable UUID id){
+        customerLoanUseCase.deleteDatabase(id);
+        return ResponseEntity.ok().body("Usuario deletado!");
+    }
 }

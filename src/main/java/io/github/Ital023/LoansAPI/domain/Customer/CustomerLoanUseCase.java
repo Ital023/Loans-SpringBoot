@@ -48,7 +48,15 @@ public class CustomerLoanUseCase {
         throw new EntityNotFoundException();
     }
 
+    public void deleteDatabase(UUID id){
+        Optional<CustomerEntity> customerOptional = customerRepository.findById(id);
 
+        if(customerOptional.isPresent()){
+            customerRepository.deleteById(id);
+        }else{
+            throw new EntityNotFoundException();
+        }
+    }
 
     public void saveDatabase(CustomerEntity customer){
         customerRepository.save(customer);
