@@ -28,8 +28,9 @@ Para usar Loans-DesafioBackEnd, siga estas etapas:
 ```
 GET / - (localhost:8080/customer-loans/{id}) return all of loans availables to specfic user.
 
-
 POST / - (localhost:8080/customer-loans) return save the user on db and show the availables loans to get.
+
+DELETE / - (localhost:8080/customer-loans/{id}) Delete from database the user selected.
 
 ```
 
